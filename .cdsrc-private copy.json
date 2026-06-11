@@ -1,0 +1,52 @@
+{
+  "requires": {
+    "[hybrid]": {
+      "messaging": {
+        // "credentials": {
+        //   "namespace": "<from EM service key>",
+        //   "xsappname": "<xsappname>",
+        //   "management": [
+        //     {
+        //       "oa2": {
+        //         "clientid": "<clientid>",
+        //         "clientsecret": "<clientsecret>",
+        //         "tokenendpoint": "https://<...>.authentication.<region>.hana.ondemand.com/oauth/token",
+        //         "granttype": "client_credentials"
+        //       },
+        //       "uri": "https://enterprise-messaging-hub-backend.<...>.hana.ondemand.com"
+        //     }
+        //   ],
+        //   "messaging": [
+        //     {
+        //       "oa2": {
+        //         "clientid": "<clientid>",
+        //         "clientsecret": "<clientsecret>",
+        //         "tokenendpoint": "https://<...>.authentication.<region>.hana.ondemand.com/token?grant_type=client_credentials",
+        //         "granttype": "client_credentials"
+        //       },
+        //       "protocol": ["amqp10ws"],
+        //       "broker": { "type": "sapmgw" },
+        //       "uri": "wss://enterprise-messaging-messaging-gateway.<...>.hana.ondemand.com/protocols/amqp10ws"
+        //     },
+        //     {
+        //       "oa2": { "...": "httprest block, present in key, unused here" },
+        //       "protocol": ["httprest"],
+        //       "broker": { "type": "saprestmgw" },
+        //       "uri": "https://enterprise-messaging-pubsub.<...>.hana.ondemand.com"
+        //     }
+        //   ],
+        //   "serviceinstanceid": "<instance id>"
+        // }
+      },
+      "aicore": {
+        "credentials": {
+          "url": "https://api.ai.prod.<region>.ml.hana.ondemand.com/v2",
+          "authentication": "OAuth2ClientCredentials",
+          "clientId": "<clientid from AI Core key>",
+          "clientSecret": "<clientsecret from AI Core key>",
+          "tokenServiceUrl": "https://<subdomain>.authentication.<region>.hana.ondemand.com/oauth/token"
+        }
+      }
+    }
+  }
+}

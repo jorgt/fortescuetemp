@@ -1,0 +1,172 @@
+<task>
+Extract purchase requisition, quotation, supplier, customer, pricing, and line item details from the provided document text.
+ 
+Return one fixed JSON object only.
+Do not return markdown.
+Do not wrap the JSON in code fences.
+Do not include explanations.
+</task>
+ 
+<rules>
+- Extract every available field from the document.
+- Use null for missing values.
+- Use empty arrays when a section has no values.
+- Do not invent values.
+- Preserve original wording for descriptions, exclusions, notes, payment terms, and scope text.
+- Extract all line items, including descriptions, quantities, units, unit prices, totals, tax, discounts, subtotals, and any item references.
+- If a value appears with a label, prefer the labelled value.
+- If multiple quote numbers, requisition numbers, purchase order numbers, job numbers, or reference numbers exist, capture all of them.
+- Normalize monetary amounts as numbers where possible.
+- Keep the original currency code or symbol if shown.
+- Keep dates as written in the document, and also provide an ISO date if it can be confidently inferred.
+- ABN, ACN, phone, email, and address fields must be copied exactly as written.
+- If the document contains supplier and customer details, separate them correctly.
+- If unsure whether a party is supplier or customer, place it in "other_parties" and add a note.
+</rules>
+ 
+<output_json_schema>
+{
+  "document": {
+    "document_type": null,
+    "title": null,
+    "date_original": null,
+    "date_iso": null,
+    "quote_number": null,
+    "quote_numbers": [],
+    "purchase_requisition_number": null,
+    "purchase_order_number": null,
+    "reference": null,
+    "references": [],
+    "job_number": null,
+    "project_number": null,
+    "valid_until_original": null,
+    "valid_until_iso": null,
+    "status": null
+  },
+  "supplier": {
+    "name": null,
+    "trading_name": null,
+    "abn": null,
+    "acn": null,
+    "address": null,
+    "postal_address": null,
+    "phone": null,
+    "mobile": null,
+    "email": null,
+    "website": null,
+    "contact": {
+      "name": null,
+      "title": null,
+      "phone": null,
+      "email": null
+    }
+  },
+  "customer": {
+    "name": null,
+    "trading_name": null,
+    "abn": null,
+    "acn": null,
+    "address": null,
+    "postal_address": null,
+    "phone": null,
+    "mobile": null,
+    "email": null,
+    "contact": {
+      "name": null,
+      "title": null,
+      "phone": null,
+      "email": null
+    }
+  },
+  "delivery": {
+    "delivery_address": null,
+    "site_address": null,
+    "requested_delivery_date_original": null,
+    "requested_delivery_date_iso": null,
+    "delivery_instructions": null,
+    "incoterms": null
+  },
+  "line_items": [
+    {
+      "line_number": null,
+      "item_code": null,
+      "part_number": null,
+      "sku": null,
+      "supplier_item_number": null,
+      "customer_item_number": null,
+      "description": null,
+      "long_description": null,
+      "quantity": null,
+      "unit": null,
+      "unit_price": null,
+      "discount": null,
+      "tax_rate": null,
+      "tax_amount": null,
+      "line_subtotal": null,
+      "line_total": null,
+      "currency": null,
+      "notes": null
+    }
+  ],
+  "totals": {
+    "subtotal": null,
+    "discount_total": null,
+    "tax_name": null,
+    "tax_rate": null,
+    "tax_total": null,
+    "freight": null,
+    "other_charges": null,
+    "grand_total": null,
+    "amount": null,
+    "currency": null
+  },
+  "payment": {
+    "payment_terms": null,
+    "deposit_required": null,
+    "bank_name": null,
+    "account_name": null,
+    "bsb": null,
+    "account_number": null,
+    "payment_reference": null
+  },
+  "terms": {
+    "terms_and_conditions": [],
+    "exclusions": [],
+    "assumptions": [],
+    "inclusions": [],
+    "warranty": null,
+    "lead_time": null,
+    "notes": []
+  },
+  "other_parties": [
+    {
+      "role": null,
+      "name": null,
+      "abn": null,
+      "acn": null,
+      "address": null,
+      "phone": null,
+      "email": null,
+      "contact": null
+    }
+  ],
+  "raw_extracted_identifiers": {
+    "abns": [],
+    "acns": [],
+    "emails": [],
+    "phones": [],
+    "quote_numbers": [],
+    "purchase_requisition_numbers": [],
+    "purchase_order_numbers": [],
+    "references": []
+  },
+  "confidence": {
+    "overall": null,
+    "supplier": null,
+    "customer": null,
+    "line_items": null,
+    "totals": null
+  },
+  "warnings": []
+}
+</output_json_schema>

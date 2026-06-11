@@ -1,0 +1,84 @@
+{
+  "name": "low-value-pr-to-po",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap-ai-sdk/foundation-models": "^2.11.0",
+    "@sap-ai-sdk/orchestration": "^2.11.0",
+    "@sap-cloud-sdk/connectivity": "^4.7.0",
+    "@sap-cloud-sdk/resilience": "^4.7.0",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2.4",
+    "@sap/cds-dk": "^9",
+    "cds-plugin-ui5": "^0.13.0",
+    "mbt": "^1.2.49",
+    "rimraf": "^5.0.5"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-config": "cds watch --open com.fortescue.lowvalueprtopo.config/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy LowValuePRtoPO --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "[production]": {
+        "auth": "xsuaa",
+        "messaging": {
+          "kind": "enterprise-messaging",
+          "format": "cloudevents",
+          "publishPrefix": "$namespace/ce/",
+          "subscribePrefix": "+/+/+/ce/",
+          "credentials": {
+            "destination": "EM_SRV-NP"
+          }
+        },
+        "db": {
+          "kind": "hana",
+          "credentials": {
+            "destination": "HANADB_SRV-NP"
+          }
+        },
+        "[development]": {
+          "db": {
+            "kind": "sqlite",
+            "model": "db/schema",
+            "credentials": {
+              "database": ":memory:"
+            }
+          },
+          "auth": {
+            "kind": "mocked",
+            "users": {
+              "admin": {
+                "password": "",
+                "roles": [
+                  "Admin"
+                ],
+                "scopes": [
+                  "$XSAPPNAME.emcallback",
+                  "$XSAPPNAME.emmanagement"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "connectivity": true,
+      "destinations": true,
+      "html5-repo": true,
+      "portal": true
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/config"
+  ]
+}
