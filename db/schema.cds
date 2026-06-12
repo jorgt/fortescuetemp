@@ -23,7 +23,7 @@ entity ExcludedPhrases: cuid, managed, sap.common.CodeList {
 }
 
 entity PRRuns: cuid, managed {
-    prNumber: String(10);
+    @unique prNumber: String(10);
     changeMarker: String; //if we have an etag or something
     status: String enum {
         new;
