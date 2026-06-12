@@ -44,4 +44,5 @@ entity PRRunMessages: cuid, managed {
     subProcess: Integer;
     step: String;
     outcome: String enum { pass; fail; skipped; not_applicable; }
+    message: String;
 }

@@ -1,30 +1,27 @@
 const cds = require("@sap/cds");
+const flow = require("./lib/pr-run-flow");
 
 class MainService extends cds.ApplicationService {
   async init() {
-    // const alert = await cds.connect.to("AI_CORE");
+    const db = await cds.connect.to("db");
 
-    // this.on("sendNotification", async (req) => {
-    //   alert.notify({
-    //     recipients: [recipient],
-    //     priority: "HIGH",
-    //     title: "New high priority incident is assigned to you!",
-    //     description:
-    //       "Incident titled 'Engine overheating' created by 'customer X' with priority high is assigned to you!",
-    //   });
-    // });
-    // this.on("sendIncidentResolved", async (req) => {
-    //   await alert.notify("IncidentResolved", {
-    //     recipients: [recipient],
-    //     data: {
-    //       customer: "CSW",
-    //       title: "Engine overheating",
-    //       user: "Gregor Wolf",
-    //     },
-    //   });
-    // });
+    this.on("processPurchaseRequisition", (req) =>
+      flow.processPurchaseRequisition(db, req.data.prNumber)
+    );
 
-    // ensure to call super.init()
+    this.on("getRunContext", (req) =>
+      flow.getRunContext(db, req.data.prNumber, req.data.subProcess)
+    );
+
+    this.on("submitRunMessages", (req) =>
+      flow.submitRunMessages(
+        db,
+        req.data.runId,
+        req.data.subProcess,
+        req.data.messages
+      )
+    );
+
     await super.init();
   }
 }

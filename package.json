@@ -11,6 +11,7 @@
     "@sap/xssec": "^4"
   },
   "devDependencies": {
+    "@cap-js/cds-test": "^1.0.1",
     "@cap-js/sqlite": "^2.4",
     "@sap/cds-dk": "^9",
     "cds-plugin-ui5": "^0.13.0",
@@ -19,6 +20,7 @@
   },
   "scripts": {
     "start": "cds-serve",
+    "test": "CDS_PLUGIN_UI5_ACTIVE=false node --test test/*.test.js",
     "watch-config": "cds watch --open com.fortescue.lowvalueprtopo.config/index.html?sap-ui-xx-viewCache=false --livereload false",
     "undeploy": "cf undeploy LowValuePRtoPO --delete-services --delete-service-keys --delete-service-brokers",
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
