@@ -159,6 +159,15 @@ async function loadConfig(db) {
   };
 }
 
+/**
+ * 
+ * @param {String} prNumber 
+ * @returns 
+ * 
+ * In a real implementation, this would fetch the PR details from S/4 using the appropriate API, but for this demo we'll just return a mock object
+ * 
+ * Reads the PR from S4. 
+ */
 async function fetchPurchaseRequisition(prNumber) {
   // const s4 = await cds.connect.to("s4");
   // return s4.read("Z_PURCHASE_REQ").where({ PurchaseRequisition: prNumber });
@@ -186,6 +195,13 @@ async function fetchPurchaseRequisition(prNumber) {
   };
 }
 
+/**
+ * 
+ * @param {*} run 
+ * @returns 
+ * 
+ * Starts the RPA process for a particular PR run / PR number
+ */
 async function kickOffRpa(run) {
   // const rpa = await cds.connect.to("rpa");
   // await rpa.send("StartPurchaseRequisitionChecks", { run });
