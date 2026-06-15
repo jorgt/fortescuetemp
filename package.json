@@ -24,7 +24,8 @@
     "watch-config": "cds watch --open com.fortescue.lowvalueprtopo.config/index.html?sap-ui-xx-viewCache=false --livereload false",
     "undeploy": "cf undeploy LowValuePRtoPO --delete-services --delete-service-keys --delete-service-brokers",
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
-    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "watch-prruns": "cds watch --open prruns/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "cds": {
@@ -81,6 +82,7 @@
     "app/*"
   ],
   "sapux": [
-    "app/config"
+    "app/config",
+    "app/prruns"
   ]
 }

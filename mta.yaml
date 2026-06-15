@@ -68,6 +68,10 @@ modules:
       - comfortescuelowvalueprtopoconfig.zip
       name: comfortescuelowvalueprtopoconfig
       target-path: app/
+    - artifacts:
+      - prruns.zip
+      name: prruns
+      target-path: app/
 - name: LowValuePRtoPO-portal-deployer
   type: com.sap.application.content
   path: app/portal
@@ -87,6 +91,16 @@ modules:
 - name: comfortescuelowvalueprtopoconfig
   type: html5
   path: app/config
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: prruns
+  type: html5
+  path: app/prruns
   build-parameters:
     build-result: dist
     builder: custom

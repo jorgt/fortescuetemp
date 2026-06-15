@@ -17,6 +17,20 @@
         },
         "payload": {
           "viz": [
+            {
+              "_version": "3.0.0",
+              "id": "Config-maintain-viz",
+              "vizType": "sap.ushell.StaticAppLauncher",
+              "title": "Configuration",
+              "targetURL": "#Config-maintain"
+            },
+            {
+              "_version": "3.0.0",
+              "id": "PRRuns-display-viz",
+              "vizType": "sap.ushell.StaticAppLauncher",
+              "title": "PR Runs",
+              "targetURL": "#PRRuns-display"
+            }
           ]
         }
       }
@@ -32,6 +46,12 @@
         },
         "payload": {
           "viz": [
+            {
+              "id": "Config-maintain-viz"
+            },
+            {
+              "id": "PRRuns-display-viz"
+            }
           ]
         }
       }
@@ -53,7 +73,55 @@
                   "componentData": {
                     "config": {
                       "applications": {
-                        "Shell-home": {}
+                        "Shell-home": {},
+                        "Config-maintain": {
+                          "sap.app": {
+                            "title": "Configuration",
+                            "applicationVersion": {
+                              "version": "0.0.1"
+                            },
+                            "crossNavigation": {
+                              "inbounds": {
+                                "Config-maintain": {
+                                  "semanticObject": "Config",
+                                  "action": "maintain",
+                                  "title": "Configuration",
+                                  "signature": {
+                                    "parameters": {},
+                                    "additionalParameters": "allowed"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "sap.ui5": {
+                            "componentName": "com.fortescue.lowvalueprtopo.config"
+                          }
+                        },
+                        "PRRuns-display": {
+                          "sap.app": {
+                            "title": "PR Runs",
+                            "applicationVersion": {
+                              "version": "0.0.1"
+                            },
+                            "crossNavigation": {
+                              "inbounds": {
+                                "PRRuns-display": {
+                                  "semanticObject": "PRRuns",
+                                  "action": "display",
+                                  "title": "PR Runs",
+                                  "signature": {
+                                    "parameters": {},
+                                    "additionalParameters": "allowed"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "sap.ui5": {
+                            "componentName": "prruns"
+                          }
+                        }
                       },
                       "enableSearch": true,
                       "enablePersonalization": true,

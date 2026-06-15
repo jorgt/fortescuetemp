@@ -46,3 +46,8 @@ entity PRRunMessages: cuid, managed {
     outcome: String enum { pass; fail; skipped; not_applicable; }
     message: String;
 }
+
+entity PRRunStatusCounts as select from PRRuns {
+    key status,
+    count(1) as count: Integer
+} group by status;

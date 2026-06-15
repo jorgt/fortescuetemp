@@ -2,7 +2,7 @@
 
 ## Context
 
-This CAP project currently exposes `AdminService` at `/odata/v4/admin/`. It already includes draft-enabled config projections for `GeneralConfig`, `ExcludedVendors`, `ExcludedPlants`, and `ExcludedPhrases`, plus a readonly `PRRuns` projection. `MainService` also exposes `ExcludedItemCats`, but `AdminService` does not yet.
+This CAP project starts with `AdminService` at `/odata/v4/admin/`. It includes draft-enabled config projections for `GeneralConfig`, `ExcludedVendors`, `ExcludedPlants`, and `ExcludedPhrases`, plus a readonly `PRRuns` projection. `MainService` also exposes `ExcludedItemCats`, but `AdminService` does not yet.
 
 The requirement is two apps:
 
@@ -21,7 +21,8 @@ This keeps administration concerns in one service, lets the PR run monitor use F
 
 Extend `AdminService` with:
 
-- `ExcludedItemCats` as a draft-enabled projection.
+- `ExcludedItemCats` as a config projection.
+- Existing config projections should be non-draft in `AdminService` so the custom app can perform direct table editing without draft activation flows.
 - `PRRunMessages` as a readonly projection for object page/message display.
 - `PRRunStatusCounts` as a readonly grouped view over `PRRuns` with key `status` and measure `count`.
 - Bound actions on `PRRuns`:

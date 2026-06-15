@@ -1,0 +1,154 @@
+<mvc:View
+    controllerName="com.fortescue.lowvalueprtopo.config.controller.App"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+    <App id="app">
+        <Page id="page" title="{i18n>appTitle}">
+            <headerContent>
+                <Button
+                    icon="sap-icon://add"
+                    tooltip="{i18n>addRow}"
+                    press=".onAddRow"/>
+                <Button
+                    icon="sap-icon://delete"
+                    tooltip="{i18n>deleteRows}"
+                    press=".onDeleteRows"/>
+                <Button
+                    icon="sap-icon://save"
+                    tooltip="{i18n>save}"
+                    type="Emphasized"
+                    press=".onSave"/>
+                <Button
+                    icon="sap-icon://refresh"
+                    tooltip="{i18n>refresh}"
+                    press=".onRefresh"/>
+            </headerContent>
+            <content>
+                <IconTabBar
+                    id="configTabs"
+                    expandable="false"
+                    selectedKey="GeneralConfig"
+                    class="sapUiResponsiveContentPadding">
+                    <items>
+                        <IconTabFilter key="GeneralConfig" text="{i18n>generalConfig}" icon="sap-icon://settings">
+                            <Table
+                                id="GeneralConfigTable"
+                                mode="MultiSelect"
+                                growing="true"
+                                growingScrollToLoad="true"
+                                items="{/GeneralConfig}">
+                                <columns>
+                                    <Column><Text text="{i18n>name}"/></Column>
+                                    <Column><Text text="{i18n>description}"/></Column>
+                                    <Column><Text text="{i18n>value}"/></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle">
+                                        <cells>
+                                            <Input value="{name}"/>
+                                            <Input value="{descr}"/>
+                                            <Input value="{value}"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </IconTabFilter>
+                        <IconTabFilter key="ExcludedVendors" text="{i18n>excludedVendors}" icon="sap-icon://supplier">
+                            <Table
+                                id="ExcludedVendorsTable"
+                                mode="MultiSelect"
+                                growing="true"
+                                growingScrollToLoad="true"
+                                items="{/ExcludedVendors}">
+                                <columns>
+                                    <Column><Text text="{i18n>name}"/></Column>
+                                    <Column><Text text="{i18n>description}"/></Column>
+                                    <Column><Text text="{i18n>value}"/></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle">
+                                        <cells>
+                                            <Input value="{name}"/>
+                                            <Input value="{descr}"/>
+                                            <Input value="{value}"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </IconTabFilter>
+                        <IconTabFilter key="ExcludedPlants" text="{i18n>excludedPlants}" icon="sap-icon://factory">
+                            <Table
+                                id="ExcludedPlantsTable"
+                                mode="MultiSelect"
+                                growing="true"
+                                growingScrollToLoad="true"
+                                items="{/ExcludedPlants}">
+                                <columns>
+                                    <Column><Text text="{i18n>name}"/></Column>
+                                    <Column><Text text="{i18n>description}"/></Column>
+                                    <Column><Text text="{i18n>value}"/></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle">
+                                        <cells>
+                                            <Input value="{name}"/>
+                                            <Input value="{descr}"/>
+                                            <Input value="{value}"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </IconTabFilter>
+                        <IconTabFilter key="ExcludedItemCats" text="{i18n>excludedItemCats}" icon="sap-icon://tags">
+                            <Table
+                                id="ExcludedItemCatsTable"
+                                mode="MultiSelect"
+                                growing="true"
+                                growingScrollToLoad="true"
+                                items="{/ExcludedItemCats}">
+                                <columns>
+                                    <Column><Text text="{i18n>name}"/></Column>
+                                    <Column><Text text="{i18n>description}"/></Column>
+                                    <Column><Text text="{i18n>value}"/></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle">
+                                        <cells>
+                                            <Input value="{name}"/>
+                                            <Input value="{descr}"/>
+                                            <Input value="{value}"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </IconTabFilter>
+                        <IconTabFilter key="ExcludedPhrases" text="{i18n>excludedPhrases}" icon="sap-icon://text">
+                            <Table
+                                id="ExcludedPhrasesTable"
+                                mode="MultiSelect"
+                                growing="true"
+                                growingScrollToLoad="true"
+                                items="{/ExcludedPhrases}">
+                                <columns>
+                                    <Column><Text text="{i18n>name}"/></Column>
+                                    <Column><Text text="{i18n>description}"/></Column>
+                                    <Column><Text text="{i18n>value}"/></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle">
+                                        <cells>
+                                            <Input value="{name}"/>
+                                            <Input value="{descr}"/>
+                                            <Input value="{value}"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </IconTabFilter>
+                    </items>
+                </IconTabBar>
+            </content>
+        </Page>
+    </App>
+</mvc:View>

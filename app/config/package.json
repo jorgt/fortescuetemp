@@ -1,0 +1,20 @@
+{
+  "name": "comfortescuelowvalueprtopoconfig",
+  "version": "0.0.1",
+  "description": "Maintain low value PR to PO configuration",
+  "keywords": [
+    "ui5",
+    "sapui5"
+  ],
+  "main": "webapp/index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "@ui5/cli": "^4.0.33",
+    "@sap/ux-ui5-tooling": "1"
+  },
+  "scripts": {
+    "start": "fiori run --open \"index.html?sap-ui-xx-viewCache=false\"",
+    "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
+    "build:cf": "ui5 build preload --config=ui5.yaml --clean-dest --dest dist"
+  }
+}
