@@ -27,29 +27,6 @@ modules:
   - name: LowValuePRtoPO-db
   parameters:
     buildpack: nodejs_buildpack
-- name: LowValuePRtoPO
-  type: approuter.nodejs
-  path: app/router
-  requires:
-  - name: srv-api
-    group: destinations
-    properties:
-      forwardAuthToken: true
-      name: srv-api
-      url: ~{srv-url}
-  - name: LowValuePRtoPO-auth
-  - name: LowValuePRtoPO-destination
-  - name: LowValuePRtoPO-html5-runtime
-  - name: LowValuePRtoPO-portal
-  provides:
-  - name: app-api
-    properties:
-      app-protocol: ${protocol}
-      app-uri: ${default-uri}
-  parameters:
-    disk-quota: 256M
-    keep-existing-routes: true
-    memory: 256M
 - name: LowValuePRtoPO-app-deployer
   type: com.sap.application.content
   path: gen
@@ -117,8 +94,6 @@ resources:
         credential-types:
         - binding-secret
         - x509
-        redirect-uris:
-        - https://*~{app-api/app-uri}/**
       tenant-mode: dedicated
       xsappname: LowValuePRtoPO-${org}-${space}
     path: ./xs-security.json
@@ -126,8 +101,6 @@ resources:
     service-plan: application
   processed-after:
   - LowValuePRtoPO-messaging
-  requires:
-  - name: app-api
 - name: LowValuePRtoPO-db
   type: com.sap.xs.hdi-container
   parameters:
@@ -159,11 +132,6 @@ resources:
   parameters:
     service: html5-apps-repo
     service-plan: app-host
-- name: LowValuePRtoPO-html5-runtime
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-plan: app-runtime
 - name: LowValuePRtoPO-portal
   type: org.cloudfoundry.managed-service
   parameters:
