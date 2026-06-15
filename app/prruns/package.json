@@ -16,7 +16,7 @@
   "scripts": {
     "start": "fiori run --open \"index.html?sap-ui-xx-viewCache=false\"",
     "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
-    "build:cf": "ui5 build preload --config=ui5.yaml --clean-dest --dest dist",
+    "build:cf": "ui5 build preload --config=ui5.yaml --clean-dest --dest dist && cp xs-app.json dist/xs-app.json",
     "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf"
   }
 }
